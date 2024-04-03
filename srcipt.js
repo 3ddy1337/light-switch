@@ -1,12 +1,24 @@
-const toggleBtn = document.getElementById("toggleBtn");
-const pageTitle = document.getElementById("pageTitle");
+// Save element from HTML in JS veriable
+const toggleBtn = document.getElementById("toggle-button");
 
-toggleBtn.addEventListener("click", function () {
-  document.body.classList.toggle("dark-mode");
-  toggleBtn.classList.toggle("dark-mode-btn");
-  if (document.body.classList.contains("dark-mode")) {
-    pageTitle.textContent = "Good Night";
+// State
+let isDark = false;
+
+// Update the HTML to sync with state
+function render() {
+  if (isDark) {
+    // if isDark = true
+    document.body.classList.add("dark");
+    document.title = "Good Night";
   } else {
-    pageTitle.textContent = "Good Morning";
+    // if isDark = false
+    document.body.classList.remove("dark");
+    document.title = "Good Morning";
   }
+}
+
+// Event listener by click on the button
+toggleBtn.addEventListener("click", () => {
+  isDark = !isDark; // Commonly used to toggle a boolean variable between true and false
+  render();
 });
